@@ -1,23 +1,24 @@
-package org.example.Test;
+package baseTest;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
-public class homePage {
+public class BaseTest {
+    @BeforeTest
+    @AfterTest
     public static void main(String[] args) throws InterruptedException {
-        //set the executable property of the chrome driver
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\USER\\Desktop\\Automation excercise\\AutomationExercise\\AutomatioExcercise\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        Thread.sleep(3000);
-        //to maximize the page
-        driver.manage().window().maximize();
+        //this set the executable property of the chrome driver
         //lunch browser
-        //to navigate to web page, driver.navigate() or driver.get()
+        WebDriver driver = new ChromeDriver();
+        //to maximize the page
+        Thread.sleep(3000);
+        driver.manage().window().maximize();
+        //to navigate to web page, you will use this: driver.navigate() or driver.get()
         driver.get("https://www.automationexercise.com/");
-
-
+        Thread.sleep(3000);
 
     }
 }
