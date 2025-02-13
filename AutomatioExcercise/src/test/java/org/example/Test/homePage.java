@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class homePage {
     public static void main(String[] args) throws InterruptedException {
         //set the executable property of the chrome driver
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\USER\\Desktop\\Automation excercise\\AutomationExercise\\AutomatioExcercise\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\USER\\Desktop\\Automation excercise");
         WebDriver driver = new ChromeDriver();
         Thread.sleep(3000);
         //to maximize the page
