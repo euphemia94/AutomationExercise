@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.Random;
 
 public class Signup {
@@ -14,17 +13,14 @@ public class Signup {
     //constructor
     public Signup(WebDriver driver)
         {
-
             this.driver=driver;
         }
-
     // Method to generate a random email
     public String generateRandomEmail() {
         Random random = new Random();
         int randomNumber = random.nextInt(100000); // Generates a random number
         return "testuser" + randomNumber + "@example.com";
     }
-
     //sign up (//Action method)
     public void setUpUser(String name, String email, String password) throws InterruptedException {
         //locators
@@ -40,20 +36,16 @@ public class Signup {
         driver.findElement(nameField).sendKeys(name);
         driver.findElement(emailfield).sendKeys(randomEmail);
         driver.findElement(signUp).click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
         driver.findElement(gender).click();
         driver.findElement(passwordField).sendKeys(password);
-    }
-    public void signUpBtn2(){
-
     }
     public String getValidationMessage() {
         WebElement nameInput = driver.findElement(By.xpath("//body/section[@id='form']/div[1]/div[1]/div[3]/div[1]/form[1]/input[2]"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript("return arguments[0].validationMessage;", nameInput);
     }
-
     //select day, month and year
     public void selectDate() throws InterruptedException {
         WebElement days = driver.findElement(By.xpath("//select[@id='days']"));
@@ -65,13 +57,13 @@ public class Signup {
         //driver.findElement((By) days).click();
         Select select = new Select(days);
         select.selectByIndex(22);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
         month.click();
         //driver.findElement((By) month).click();
         Select selectMonth = new Select(month);
         selectMonth.selectByIndex(2);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
         year.click();
         //driver.findElement((By) year).click();
@@ -87,7 +79,7 @@ public class Signup {
         By lastNameField = By.xpath("//input[@id='last_name']");
         By companyField = By.xpath("//input[@id='company']");
         By addressField = By.xpath("//input[@id='address1']");
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         WebElement country = driver.findElement(By.xpath("//select[@id='days']"));
         By stateField = By.xpath("//input[@id='state']");
         By ciyField = By.xpath("//input[@id='city']");

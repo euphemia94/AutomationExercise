@@ -2,22 +2,37 @@ package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage {
     WebDriver driver;
     //constructor
-    ProductPage(WebDriver driver)
-    {
+    public ProductPage(WebDriver driver) {
         this.driver=driver;
     }
-    //locators
     //go to product and purchase top
-    By goToproductPage = By.xpath("//header/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[2]/a[1]");
-    By productPageBtn = By.xpath("//body/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h4[1]/a[1]");
-    By p = By.xpath("//body/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[2]/a[1]");
-    //view the top of choice and purchase
-    By selectTopBn = By.xpath("//body/section[1]/div[1]/div[2]/div[2]/div[1]/div[3]/div[1]/div[2]/ul[1]/li[1]/a[1]");
-    ///By ("//body/section[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/span[1]/button[1]")).click();
+    public void productPage() throws InterruptedException {
+        //locators
+        By productBtn = By.xpath("//a[@href='/products']");
+        By selectCategory = By.xpath("//a[normalize-space()='Women']");
+        By selectClothTyp = By.xpath("//a[normalize-space()='Tops']");
+        By blackDress = By.xpath("//div[@class='col-sm-9 padding-right']//div[2]//div[1]//div[2]//ul[1]//li[1]//a[1]");
+        By selQuantity = By.xpath("//input[@id='quantity']");
+        By addDressToCard= By.xpath("//button[@type='button']");
+        By contineShoping = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
 
+        driver.findElement(productBtn).click();
+        driver.findElement(selectCategory).click();
+        driver.findElement(selectClothTyp).click();
+        driver.findElement(blackDress).click();
+        WebElement quantity = driver.findElement(selQuantity);
+
+        Select selectQuantity = new Select(quantity);
+        selectQuantity.selectByIndex(1);
+        Thread.sleep(3000);
+        driver.findElement(addDressToCard);
+        driver.findElement(contineShoping);
+    }
 
 }
