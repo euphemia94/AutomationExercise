@@ -29,8 +29,8 @@ public class SignupTest extends BaseTest {
         signupPage.setUpUser("", signupPage.generateRandomEmail(), "455788");
         signupPage.selectDate();
         signupPage.addressInfo("", "Nnaemeka", "--", "123 Main St", "Lagos", "Ikeja", "100001", "08012345678");        // Get the page title
-        String actualTitle = signupPage.pageTitle();
-        Assert.assertFalse(actualTitle.contains("Please fill out this field"));
+        String errorMessage = signupPage.pageTitle();
+        Assert.assertFalse(errorMessage.contains("Please fill out this field"));
     }
     @Test(priority = 3)
     // New user without email address
