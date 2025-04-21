@@ -3,6 +3,7 @@
     <test name="Signup Tests">
         <classes>
             <class name="pageEvents.SignupTest"/>
+            <class name="pageEvents.ProductTest"/>
         </classes>
     </test>
 </suite>
