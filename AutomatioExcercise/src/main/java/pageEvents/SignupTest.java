@@ -38,8 +38,8 @@ public class SignupTest extends BaseTest {
         signupPage.setUpUser("john", "", "123456");
         signupPage.selectDate();
         signupPage.addressInfo("john", "Nnaemeka", "Jazdon Enterprise", "123 Main St", "Lagos", "Ikeja", "100001", "08012345678");        // Get the page title
-        String actualTitle = signupPage.pageTitle();
-        Assert.assertFalse(actualTitle.contains("ACCOUNT CREATED!"));
+        String errorMassage = signupPage.pageTitle();
+        Assert.assertFalse(errorMassage.contains("ACCOUNT CREATED!"));
     }
     @Test(priority = 4)
     // New user without password
@@ -47,16 +47,16 @@ public class SignupTest extends BaseTest {
         signupPage.setUpUser("Blessing", "", "");
         signupPage.selectDate();
         signupPage.addressInfo("john", "Nnaemeka", "Jazdon Enterprise", "23 Main St", "Lagos", "Ikeja", "100001", "08012345678");        // Get the page title
-        String actualTitle = signupPage.pageTitle();
-        Assert.assertFalse(actualTitle.contains("ACCOUNT CREATED!"));
+        String errorMassage = signupPage.pageTitle();
+        Assert.assertFalse(errorMassage.contains("ACCOUNT CREATED!"));
     }
     @Test(priority = 5)
     // New user without selecting month and day address
     public void withoutSelectingMonthAndDate() throws InterruptedException {
         signupPage.setUpUser("Beatrice", signupPage.generateRandomEmail(), "123456");
         signupPage.addressInfo("Beatrice", "Nnaemeka", "Inno Tech limited", "", "Lagos", "Ikeja", "100001", "08012345678");        // Get the page title
-        String actualTitle = signupPage.pageTitle();
-        Assert.assertFalse(actualTitle.contains("ACCOUNT CREATED!"));
+        String errorMessage = signupPage.pageTitle();
+        Assert.assertFalse(errorMessage.contains("ACCOUNT CREATED!"));
     }
 
     @Test(priority = 6)
@@ -65,8 +65,8 @@ public class SignupTest extends BaseTest {
         signupPage.setUpUser("john", signupPage.generateRandomEmail(), "123456");
         signupPage.selectDate();
         signupPage.addressInfo("", "Nnaemeka", "Inno ltd", "23, Gbada", "Lagos", "Ikeja", "100001", "08012345678");        // Get the page title
-        String actualTitle = signupPage.pageTitle();
+        String errorMessage = signupPage.pageTitle();
         // Assertion: Check if the title contains "ACCOUNT CREATED!" (It should fail for invalid credentials)
-        Assert.assertFalse(actualTitle.contains("ACCOUNT CREATED!"));
+        Assert.assertFalse(errorMessage.contains("ACCOUNT CREATED!"));
     }
 }
