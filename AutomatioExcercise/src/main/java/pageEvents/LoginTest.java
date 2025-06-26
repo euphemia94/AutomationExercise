@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 3)
     public void loginWrongPassword(){
         login.login("euphemiauc94@gmail.com", "");
-        String validationMsg = login.getEmailValidationMessage();
+        String validationMsg = login.getPasswordValidationMessage();
         System.out.println("Validation message: " + validationMsg);
         Assert.assertTrue(validationMsg.contains("Please fill out this field"));
     }
@@ -41,22 +41,22 @@ public class LoginTest extends BaseTest {
     @Test(priority = 4)
     public void loginWithEmptyField(){
         login.login("", "");
-        String pageTitle = login.getPageTitle();
-        Assert.assertFalse(pageTitle.contains("Automation Exercise"));
+        String errorMessage = login.getEmailValidationMessage();
+        Assert.assertTrue(errorMessage.contains("Please fill out this field"));
     }
     //subscribe to newletter
     @Test(priority = 5)
     public void subscribe() throws InterruptedException {
-        String successMessage = login.subscriptionMessage();
+        String successMessage = login.subscriptionMessage("euphemiauc94@gmail.com");
         System.out.println("Subscription Message: " + successMessage);
         wait(2000);
         Assert.assertTrue(successMessage.contains("You have been successfully subscribed!"));
     }
-    //subscription without email
+    //subscription without email or invalid
     @Test(priority = 6)
-    public void subscribeWithout() throws InterruptedException {
-        String successMessage = login.subscriptionMessage();
-        System.out.println("Subscription Message: " + successMessage);
+    public void subscribeWithoutEmail() throws InterruptedException {
+        String successMessage = login.subscriptionMessage("");
+        System.out.println("Subscription Message: " + successMessage);  
         wait(2000);
         Assert.assertFalse(successMessage.contains("You have been successfully subscribed!"));
     }

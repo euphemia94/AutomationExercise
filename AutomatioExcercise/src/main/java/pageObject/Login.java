@@ -3,6 +3,10 @@ package pageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class  Login {
     WebDriver driver;
@@ -30,14 +34,23 @@ public class  Login {
     public String getEmailValidationMessage() {
         WebElement emailField = driver.findElement(By.xpath("//input[@data-qa='login-email']"));
         return emailField.getAttribute("validationMessage");
+
     }
-    public String subscriptionMessage() {
+    public String getPasswordValidationMessage() {
+        WebElement passWordField = driver.findElement(By.xpath("//input[@placeholder='Password']"));
+        return passWordField.getAttribute("validationMessage");
+    }
+    public String subscriptionMessage(String email) {
         By subscriptionInputField = By.xpath("//input[@id='susbscribe_email']");
         By subscribeBtn = By.xpath("//button[@id='subscribe']");
         By successMsg = By.xpath("//div[@class='alert-success']"); // Adjust if actual message d// iffers
 
-        driver.findElement(subscriptionInputField).sendKeys("euphemiauc94@gmail.com");
+        driver.findElement(subscriptionInputField).sendKeys(email);
         driver.findElement(subscribeBtn).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(successMsg));
+
         return driver.findElement(successMsg).getText(); //  "You have been successfully subscribed!"
     }
 }

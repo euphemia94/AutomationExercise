@@ -14,7 +14,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-
   <dependencies>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -44,12 +43,20 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
+
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.9.0</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.7.0</version> <!-- or the latest version -->
+    </dependency>
+
 
   </dependencies>
 </project>
